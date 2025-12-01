@@ -8,14 +8,20 @@ A rework of my proxy scraper that uses arguments.
 
 ## Showcase
 <img width="603" height="107" alt="image" src="https://github.com/user-attachments/assets/be21ff96-34cb-4a09-93c6-d72051853325" />
-/stats
+
+### /stats
+
 <img width="592" height="222" alt="image" src="https://github.com/user-attachments/assets/2e965f5e-b619-41e4-af02-0f405c3a58cd" />
-/get_proxies
+
+### /get_proxies
+
 <img width="627" height="503" alt="image" src="https://github.com/user-attachments/assets/bd9d774b-d924-4ade-96c9-f461e10d56ca" />
-/check_proxy?check_proxy=IP:PORT
-VALID
+
+### /check_proxy?check_proxy=IP:PORT
+
+### VALID
 <img width="840" height="248" alt="image" src="https://github.com/user-attachments/assets/b90df3bb-5501-4995-b14f-60a17f101f0f" />
-INVALID
+### INVALID
 <img width="806" height="299" alt="image" src="https://github.com/user-attachments/assets/77caf1d7-1067-489f-ae45-379382777697" />
 
 ## Console Logs
