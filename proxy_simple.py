@@ -666,4 +666,38 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # --- Configuration ---
+    PORT = 8080                 # The web server port
+    CHECK_INTERVAL = 60 * 30    # Check for new proxies every 30 minutes
+    # ---------------------
+
+    # Initialize the checker
+    checker = ProxyChecker()
+    
+    # Start the Web Server in a separate thread so it doesn't block the scraper
+    print(f"[*] Starting Web Server on port {PORT}...")
+    server_thread = threading.Thread(target=start_web_server, args=(PORT, checker))
+    server_thread.daemon = True # This ensures the server dies when the main script dies
+    server_thread.start()
+
+    # Infinite Loop to Scrape and Check
+    while True:
+        try:
+            print(f"\n[*] Starting Scraping Cycle at {datetime.now().strftime('%H:%M:%S')}")
+            
+            # 1. Get URLs (Scraping all types)
+            urls = get_default_urls("all")
+            
+            # 2. Scrape and Check
+            # You can customize proxy_types=["http", "socks4", "socks5"]
+            checker.scrape_and_check(urls, ["http", "socks4", "socks5"], save_invalid=False)
+            
+            print(f"[*] Cycle finished. Sleeping for {CHECK_INTERVAL/60} minutes...")
+            time.sleep(CHECK_INTERVAL)
+            
+        except KeyboardInterrupt:
+            print("Stopping...")
+            sys.exit(0)
+        except Exception as e:
+            print(f"Error in main loop: {e}")
+            time.sleep(60) # Sleep a bit before retrying on error
